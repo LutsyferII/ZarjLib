@@ -27,14 +27,17 @@ public class StaticDropChanges {
                 attackDamage = entity.getAttributeValue(EntityAttributes.GENERIC_ATTACK_DAMAGE);
             }
             // Твоя формула шанса
+
             double baseChance = (maxHealth * 0.05 + attackDamage * 0.2) / 100.0;
+
+
 
             // Убийца — игрок?
             if (source.getAttacker() instanceof ServerPlayerEntity player) {
                 baseChance += player.getLuck() * 0.01;
             }
             for (Map.Entry<Item, Double> entry : entryes.entrySet()) {
-                if (entity.getWorld().random.nextDouble() < baseChance + entry.getValue()) {
+                if (entity.getWorld().random.nextDouble() < baseChance * entry.getValue()) {
                     ItemStack dropStack = new ItemStack(entry.getKey()); // или что там дропается
                     ItemEntity itemEntity = new ItemEntity(
                             entity.getWorld(),

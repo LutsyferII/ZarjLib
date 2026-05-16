@@ -53,7 +53,7 @@ public class DropChanges {
                 baseChance += player.getLuck() * 0.01;
             }
             for (Map.Entry<Item, Double> entry : ALL_ENTRIES.entrySet()) {
-                if (entity.getWorld().random.nextDouble() < baseChance + entry.getValue()) {
+                if (entity.getWorld().random.nextDouble() < baseChance * entry.getValue()) {
                     ItemStack dropStack = new ItemStack(entry.getKey()); // или что там дропается
                     ItemEntity itemEntity = new ItemEntity(
                             entity.getWorld(),
