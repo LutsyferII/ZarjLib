@@ -1,9 +1,35 @@
-# ZarjLib
 
-## Setup
+### ZarjLib 
 
-For setup instructions, please see the [Fabric Documentation page](https://docs.fabricmc.net/develop/getting-started/creating-a-project#setting-up) related to the IDE that you are using.
+```markdown
+# ZarjLib 📚
 
-## License
+**Библиотека утилит для разработки Minecraft модов** на Fabric.
 
-This template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
+ZarjLib содержит переиспользуемые компоненты и системы, вынесенные из моих модов.
+
+## Включённые модули
+
+### 🎲 DropChanges — Система модификации дропа
+
+Динамическая система изменения дропа мобов на основе их характеристик.
+
+**Возможности:**
+- Регистрация кастомных предметов с модификаторами шанса
+- Автоматический расчёт базового шанса на основе:
+  - Максимального здоровья моба
+  - Урона атаки
+  - Удачи игрока (killer's luck)
+- Event-driven архитектура (ServerLivingEntityEvents)
+
+**Использование:**
+```java
+// Создай систему
+DropChanges dropSystem = new DropChanges();
+
+// Зарегистрируй предметы с модификаторами
+dropSystem.addDrop(MyItems.RARE_GEM, 2.0);  // x2 шанс
+dropSystem.addDrop(MyItems.EPIC_WEAPON, 0.5); // x0.5 шанс
+
+// Запусти систему (один раз при инициализации мода)
+dropSystem.ensureAllRegistered();
