@@ -32,3 +32,10 @@ dropSystem.addDrop(MyItems.EPIC_WEAPON, 0.5); // x0.5 шанс
 
 // Запусти систему (один раз при инициализации мода)
 dropSystem.ensureAllRegistered();
+
+Формула шанса;
+baseChance = (mob.maxHealth * 0.05 + mob.attackDamage * 0.2) / 100.0
+if (killer instanceof Player):
+    baseChance += player.luck * 0.01
+
+finalChance = baseChance * itemModifier
